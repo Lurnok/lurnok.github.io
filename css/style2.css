@@ -89,3 +89,26 @@ header h1 {
     background-color: gray;
     color: #f7f7f7;
 }
+
+.two-row-container img{
+    max-width: 100%;
+    border: 1px solid #333;
+}
+
+.article-link{
+    transition: all .2s ease-in-out; 
+}
+
+.article-link h1{
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.article-link:hover{
+    transform: scale(1.1);
+}
+
+.article-link-a{
+    text-decoration: none;
+    color : #333;
+}

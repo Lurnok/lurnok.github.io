@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../content/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style2.css">
+    <title>Unfuck</title>
+</head>
+<body>
+    <header>
+        <h1>
+            Unfuck - A Brainfuck interpretor
+        </h1>
+    </header>
+    <div class="main-content">
+        <a class="button" href="projects.html">Back to projects</a>
+        <br>
+        <br>
+        <div class="article">
+            <h1>
+                What is brainfuck ?
+            </h1>
+            <p>
+                Brainfuck is an <b>esolang</b>, which means "esoteric programming language". Those are languages,
+                not meant to be used, that are either funny, stupid, conceptual or that want to showcase a cool concept.
+                I like those a lot and often read articles about them on the <a href="">official esolang wiki</a>.
+            </p>
+            <br>
+            <p>
+                Brainfuck functions, in it's basic form, by working on a array of <b>30 thousands</b> cells.
+                Each cell has a value, ranging from <b>0 to 255</b>. When the program starts, every cell has a value of 0, and a <b>pointer</b> is positionned on cell 0.
+                The language works by affecting those values and outputing them, with a set of very few, very simple, instructions :
+            </p>
+        </div>
+        <div class="two-row-container">
+            <div class="half-article">
+                <ul>
+                    <li><b> > </b>   : move the pointer one cell to the <b>right</b></li>
+                    <li><b> < </b>   : move the pointer one cell to the <b>left</b></li>
+                    <li><b> + </b>   : <b>increment</b> the value of the pointed cell</li>
+                    <li><b> - </b>   : <b>decrement</b> the value of the pointed cell</li>
+                    <li><b> . </b>   : <b>outputs</b> the value of the pointed cell</li>
+                    <li><b> , </b>   : takes <b>user input</b> and stores it in the pointed cell</li>
+                    <li><b> []</b>   : These are for <b>loops</b>, i'll explain how they work later</li>
+                </ul>
+            </div>
+            <figure>
+                <img src="../../content/brainfuck_code.png" alt="bf">
+                <figcaption>Snipet of brainfuck code, don't know what it does though, it's not by me.</figcaption>
+            </figure>
+        </div>
+    </div>
+</body>
+</html>
