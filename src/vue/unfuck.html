@@ -24,7 +24,7 @@
             <p>
                 Brainfuck is an <b>esolang</b>, which means "esoteric programming language". Those are languages,
                 not meant to be used, that are either funny, stupid, conceptual or that want to showcase a cool concept.
-                I like those a lot and often read articles about them on the <a href="">official esolang wiki</a>.
+                I like those a lot and often read articles about them on the <a target="_blank" href="https://esolangs.org">official esolang wiki</a>.
             </p>
             <br>
             <p>
@@ -50,6 +50,93 @@
                 <figcaption>Snipet of brainfuck code, don't know what it does though, it's not by me.</figcaption>
             </figure>
         </div>
+        <div class="article">
+            How do you program things then ?
+            <p>
+                Well, I don't really know, I only know how to ouptut text. Since every cell has a value that can go from
+                0 to 255, the <b>.</b> instruction outputs to the console the <b>ASCII table</b> character corresponding to said value.
+            </p>
+            <p>
+                People have done crazy things with this language like an <b>if condition</b>, only with the instructions explained above,
+                which is super impressive to me. I have however no idea how it works.
+            </p>
+            <p>
+                I don't need to understand the complex algorithms created by the community to write an interpretor, only the way the basic components
+                of this language works.
+            </p>
+        </div>
+        <div class="article">
+            <h1>
+                What is an interpretor ?
+            </h1>
+            <p>
+                There are two major types of programming languages :
+                <ul>
+                    <li>Compiled language (C, C++, Java, ...)</li>
+                    <li>Interpreted languages (JavaScript, Python, ...)</li>
+                </ul>
+                Compiled languages go through a compiler which will create an executable based on the program
+                while Interpreted languages are read by an interpretor, that executes the code itself.
+                <br>
+                So an interpretor is a program that reads the code from the source file, understands it, and exectutes it.
+                I decided, as a challenge to myself, to write myself an interpretor. Since an interpretor for a complex language
+                is a massive project, I chose to write a Brainfuck interpretor, which would be easier, but still challenging.
+            </p>
+        </div>
+        <div class="article">
+            <h1>
+                Unfuck
+            </h1>
+            <p>
+                I chose to do this project in C++, a low level compiled language that is perfectly suited for interpretor (though
+                nowadays, Rust is preffered for those, might rewrite Unfuck in it someday). 
+                <br><br>
+                There are two main classes to make this work, <b>Cells</b>, representing the array and <b>SrcIterator</b>, to
+                act on the source file code and execute it, basically SrcIterator reads the code and acts on Cells.
+                <br>
+                First the argument passed while executing the program is checked, to see if it is a valid path to a <b>.bf</b> file,
+                the brainfuck extension, if not, then the execution is stopped and an error message is shown. Then the <b>Cells</b>
+                are initiallized, and the text in the <b>.bf</b> file is stored in a member attribute of the <b>SrcIterator</b>
+                class. The brainfuck code is then checked for error (added in the famous <b>debugginator</b> update), that means a bracket
+                that is mismatched (loop that is not closed or that is never opened in the first place), a few weeks ago this security was
+                not here and a faulty program would cause an infinite loop and probably a substancial amount of memory leak.
+                Then if there is no problem, the <b>SrcIterator</b> class will take the first instruction (easy, they are only single-character
+                instructions), execute it and then <b>consume</b> it (remove it from the list) and do this until there is none left.
+                <br><br>
+                Only problem, <b>loops</b>.
+                <br>
+                The way they work in brainfuck is a bit weird. A loop is delimited by two brackets ( <b>[stuff to loop]</b> ), and 
+                when the cell the pointer is at the end of an iteration of the loop has a value of <b>0</b>, exit the loop.
+                Easy enough, just store the string  between brackets in a variable and execute it in a while loop with a "<b>> 0</b>"
+                condition. It works just fine but when it comes to nested loops, my first solution was kinda broken. 
+                This was a bit of a nightmare to fix, since I was working with recursion (functions calling themselves) but ended up finding 
+                a way to make it work, by divinding the work between different functions with clear goals to make it easier to see
+                where the problem was (it was something so dumb I don't want to mention it here).
+                <br><br>
+                I swear when I used it to execute Brainfuck code and it worked for the first time it felt so good.        
+            </p>
+        </div>
+        <div class="article">
+            <h1>
+                Conclusion
+            </h1>
+            <p>
+                This is honestly not a good interpretor (well it gets the job done) but I did this project mainly to challenge
+                myself to do something I had no idea how it worked in a language I barely knew at the time.
+                This taught me a lot about how interpretors work (even though no <b>parsing</b> is needed here, while 
+                it is mandatory for a complete language interpretor), and gave me a good basic understanding of C++.
+            </p>
+            <p>
+                Possible evolutions :
+                <ul>
+                    <li>Rewrite it in Rust (this would take a long time so not for now)</li>
+                    <li>Make the settings customizable with a config file</li>
+                    <li>Improve the debugger (like make it able to tell you <b>WHERE</b> the problem is, not only that there is one)</li>
+                </ul>
+            </p>
+            I'll sometimes continue working on this, and I'll make sure to update this page when I do so.
+        </div>
+        <a class="button" target="_blank" href="https://github.com/Lurnok/unfuck">Unfuck GitHub repo</a>
     </div>
 </body>
 </html>
